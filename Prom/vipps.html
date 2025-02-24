@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Met Gala / Hollywood Prom</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Countdown Timer Styling */
+        #countdown {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #d91e18; /* Red color to stand out */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="dresscode.html">Dress Code</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="vipps.html">VIPPS for tickets</a></li>
+        </ul>
+    </nav>
+   
+    <!-- Vipps section nav -->
+    <header id="ticket">
+        <h1>Buy tickets here</h1>
+    </header>
+
+    <!-- Vipps section -->
+    <section id="vipps">
+        <h2>Use this number to buy your tickets</h2> <br>
+        <p> <strong style="font-size: 1.5em;">+ 47 41 25 57 50</strong></p> 
+        <p>Price: <strong>300kr</strong> per person</p>
+        <p>Deadline to buy tickets is <strong>March 20th, 2025</strong></p>
+
+        <!-- Countdown Timer -->
+        <p>Time left to buy tickets:</p>
+        <div id="countdown"></div>
+    </section>
+
+    <div class="center-image">
+        <div class="vipps-item">
+            <h2 style="font-size: 1.5em;">Or scan this QR code</h2>
+            <img src="Vipps.jpeg" alt="Scan the QR code to pay" class="vipps-image">
+        </div>
+    </div>
+
+    <!-- Countdown Timer Script -->
+    <script>
+        function updateCountdown() {
+            const deadline = new Date("March 20, 2025 23:59:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = deadline - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                document.getElementById("countdown").innerHTML = "Ticket sales are closed!";
+            }
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Initial call to display countdown immediately
+        updateCountdown();
+    </script>
+
+</body>
+</html>
